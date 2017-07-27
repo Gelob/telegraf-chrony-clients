@@ -3,9 +3,9 @@ grab total number of chrony clients for telegraf/influxdb
 
 This is an exec script meant for [telegraf](https://github.com/influxdata/telegraf) in order to export the total number of clients that are communicating with chrony. It could be easily modified to POST directly to influxdb if you wanted.
 
-You will need to give the telegraf user read access to /etc/chrony.keys (default) in order for it to be able to read the network key to contact chronyd as the clients command is not available over the UNIX socket. If you don't you'll see telegraf reporting 0 clients. The script also needs to be set as an executeable
+You will need to give the telegraf user read access to /etc/chrony.keys (default) in order for it to be able to read the network key to contact chronyd as the clients command is not available over the UNIX socket. If you don't you'll see telegraf reporting 0 clients. The script also needs to be set as an executeable and readable/executeable by the telegraf user
 
-`setfacl -m user:telegraf:r /etc/chrony.keys`
+`setfacl -m user:telegraf:r /etc/chrony.keys` `setfacl -m user:telegraf:rx /opt/chronyclients.sh`
 
 `chmod +x /opt/chronyclients.sh`
 
